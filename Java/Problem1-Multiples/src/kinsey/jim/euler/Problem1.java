@@ -9,43 +9,12 @@ public class Problem1 {
 	public static void main(String[] args) {
 		System.out.println(sumOfMultiples(1000, 3, 5));
 	}
-
+	
 	public static int sumOfMultiples(int limit, int... factors) {
-		if (limit == 0)
-			return 0;
-		
-		limit = limit - 1;
-		
-		if (isMultiple(limit, factors)) 
-			return limit + sumOfMultiples(limit, factors);
-		return sumOfMultiples(limit, factors);
-	}
-	
-	private static boolean isMultiple(int number, int... factors) {
-		if (factors.length == 0)
-			return false;
-		return ((number % head(factors)) == 0) || isMultiple(number, tail(factors));
-	}
-	
-	private static int head(int... ints) {
-		return ints[0];
-	}
-	
-	private static int[] tail(int... ints) {
-		int[] tail = new int[ints.length - 1];
-		
-		for (int i = 1; i < ints.length; i++) {
-			tail[i - 1] = ints[i];
-		}
-		
-		return tail;
-	}
-	
-	private static int sumOfMultiples_oldSchool(int limit, int... factors) {
 		int sum = 0;
 		
 		for (int i = 0; i < limit; i++) {
-			if (isMultiple_oldSchool(i, factors)) {
+			if (isMultiple(i, factors)) {
 				sum += i;
 			}
 		}
@@ -53,12 +22,13 @@ public class Problem1 {
 		return sum;
 	}
 	
-	private static boolean isMultiple_oldSchool(int number, int... factors) {
+	private static boolean isMultiple(int number, int... factors) {
 		for (int factor : factors) {
 			if (number % factor == 0) {
 				return true;
 			}
 		}
+		
 		return false;
 	}	
 	
