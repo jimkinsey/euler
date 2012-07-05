@@ -11,10 +11,7 @@ public class Problem9 {
 	//	Find the product abc.
 	
 	public static void main(String[] args) {
-		long start = System.currentTimeMillis();
 		System.out.println(pythagoreanTripletWithSum(1000));
-		long end = System.currentTimeMillis();
-		System.out.println("Took " + (end - start) + "ms");
 	}
 	
 	public static Triplet pythagoreanTripletWithSum(int sum) {
