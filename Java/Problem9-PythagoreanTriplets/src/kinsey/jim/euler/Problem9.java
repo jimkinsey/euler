@@ -11,17 +11,19 @@ public class Problem9 {
 	//	Find the product abc.
 	
 	public static void main(String[] args) {
+		long start = System.currentTimeMillis();
 		System.out.println(pythagoreanTripletWithSum(1000));
+		long end = System.currentTimeMillis();
+		System.out.println("Took " + (end - start) + "ms");
 	}
 	
 	public static Triplet pythagoreanTripletWithSum(int sum) {
 		for (int a = 1; a < (sum / 3); a++) {
 			for (int b = 2; b < (sum / 2); b++) {
-				for (int c = 3; c < (sum  - 2); c++) {
-					Triplet triplet = new Triplet(a,b,c);
-					if (triplet.isPythagorean() && triplet.sum() == sum) {
-						return triplet;
-					}
+				int c = (int) Math.sqrt((a * a) + (b * b));
+				Triplet triplet = new Triplet(a,b,c);
+				if (triplet.isPythagorean() && triplet.sum() == sum) {
+					return triplet;
 				}
 			}
 		}
