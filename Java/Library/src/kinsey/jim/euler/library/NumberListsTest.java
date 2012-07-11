@@ -34,4 +34,29 @@ public class NumberListsTest {
 		assertEquals(6, NumberLists.product(Arrays.asList(1,2,3)));
 	}
 	
+	@Test
+	public void test_sum_empty() {
+		assertEquals(0, NumberLists.sum(new ArrayList<Integer>()));
+	}
+
+	@Test
+	public void test_sum_0() {
+		assertEquals(0, NumberLists.sum(Arrays.asList(0)));
+	}
+
+	@Test
+	public void test_sum_1() {
+		assertEquals(1, NumberLists.sum(Arrays.asList(1)));
+	}
+
+	@Test
+	public void test_sum_1_2() {
+		assertEquals(3, NumberLists.sum(Arrays.asList(1,2)));
+	}
+
+	@Test
+	public void test_sum_1_2_3() {
+		assertEquals(6, NumberLists.sum(Arrays.asList(1,2,3)));
+	}
+	
 }

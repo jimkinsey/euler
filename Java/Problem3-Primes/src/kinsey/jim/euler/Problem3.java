@@ -1,5 +1,7 @@
 package kinsey.jim.euler;
 
+import static kinsey.jim.euler.library.Numbers.isPrime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,18 +44,6 @@ public class Problem3 {
 	
 	private static boolean isMultipleOf(long number, long factor) {
 		return (number % factor == 0);
-	}
-	
-	private static boolean isPrime(long number) {
-		if (number < 2)
-			return false;
-		
-		for (int i = 2; i <= Math.sqrt(number); i++) {
-			if (number % i == 0) {
-				return false;
-			}
-		}
-		return true;
 	}
 	
 	private static <E> E lastObject(List<E> objects) {

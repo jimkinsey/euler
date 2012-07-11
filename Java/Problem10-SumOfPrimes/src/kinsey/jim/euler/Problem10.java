@@ -1,5 +1,8 @@
 package kinsey.jim.euler;
 
+import static kinsey.jim.euler.library.Numbers.isPrime;
+import static kinsey.jim.euler.library.NumberLists.sum;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +15,6 @@ public class Problem10 {
 	public static void main(String[] args) {
 		System.out.println(sum(primesBelow(2000000)));
 	}
-
-	public static long sum(List<Integer> numbers) {
-		long sum = 0;
-		
-		for (Integer number : numbers) {
-			sum += number;
-		}
-		
-		return sum;
-	}
 	
 	public static List<Integer> primesBelow(int limit) {
 		List<Integer> primes = new ArrayList<Integer>();
@@ -32,18 +25,6 @@ public class Problem10 {
 		}
 		
 		return primes;
-	}
-	
-	private static boolean isPrime(long number) {
-		if (number < 2)
-			return false;
-		
-		for (int i = 2; i <= Math.sqrt(number); i++) {
-			if (number % i == 0)
-				return false;
-		}
-		
-		return true;
 	}
 	
 }
