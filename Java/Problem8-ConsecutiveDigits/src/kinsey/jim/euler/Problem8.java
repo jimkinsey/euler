@@ -1,5 +1,7 @@
 package kinsey.jim.euler;
 
+import static kinsey.jim.euler.library.NumberLists.product;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,9 +56,9 @@ public class Problem8 {
 		System.out.println(largestProductOfNConsecutiveDigitsInNumberString(5, thousandDigitNumber));
 	}
 
-	public static Integer largestProductOfNConsecutiveDigitsInNumberString(int n, String largeNumber) {
+	public static Long largestProductOfNConsecutiveDigitsInNumberString(int n, String largeNumber) {
 		if (largeNumber.length() < n)
-			return 0;
+			return 0l;
 		return Math.max(product(digitsInString(largeNumber.substring(0, n))), largestProductOfNConsecutiveDigitsInNumberString(n, largeNumber.substring(1))); 
 	}
 
@@ -89,14 +91,6 @@ public class Problem8 {
 	
 	private static String tail(String body) {
 		return body.substring(1);
-	}
-	
-	public static Integer product(List<Integer> factors) {
-		if (factors.size() == 0)
-			return 0;
-		if (factors.size() == 1)
-			return factors.get(0);
-		return factors.get(0) * product(factors.subList(1, factors.size()));
 	}
 	
 }

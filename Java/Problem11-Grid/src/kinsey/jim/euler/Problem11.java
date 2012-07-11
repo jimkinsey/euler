@@ -1,5 +1,7 @@
 package kinsey.jim.euler;
 
+import static kinsey.jim.euler.library.NumberLists.product;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -51,6 +53,16 @@ public class Problem11 {
 		System.out.println(max);
 	}
 	
+	public static void populateGridFromString(Grid<Integer> numberGrid, String gridDescription) {
+		for (int y = 0; y < numberGrid.height; y++) {
+			List<Integer> row = getRowFromString(y, numberGrid.width, gridDescription);
+			
+			for (int x = 0; x < numberGrid.width; x ++) {
+				numberGrid.set(x, y, row.get(x));
+			}
+		}
+	}
+	
 	private static List<List<Integer>> getLines(Grid<Integer> grid, int x, int y, int length) {
 		List<List<Integer>> lines = new ArrayList<List<Integer>>();
 		
@@ -81,22 +93,6 @@ public class Problem11 {
 		}
 		
 		return directions;
-	}
-	
-	public static void populateGridFromString(Grid<Integer> numberGrid, String gridDescription) {
-		for (int y = 0; y < numberGrid.height; y++) {
-			List<Integer> row = getRowFromString(y, numberGrid.width, gridDescription);
-			
-			for (int x = 0; x < numberGrid.width; x ++) {
-				numberGrid.set(x, y, row.get(x));
-			}
-		}
-	}
-	
-	public static long product(List<Integer> numbers) {
-		if (numbers.size() == 1)
-			return numbers.get(0);
-		return numbers.get(0) * product(numbers.subList(1, numbers.size()));
 	}
 	
 	private static List<Integer> getRowFromString(int row, int width, String gridDescription) {
