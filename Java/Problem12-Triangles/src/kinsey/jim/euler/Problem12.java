@@ -43,9 +43,6 @@ public class Problem12 {
 	}
 	
 	public static Set<Long> factors(long n) {
-		if (n == 0)
-			return Collections.emptySet();
-		
 		Set<Long> factors = new LinkedHashSet<Long>();
 		
 		for (long a = 1, b = n; a <= b; a++, b = n / a) {
