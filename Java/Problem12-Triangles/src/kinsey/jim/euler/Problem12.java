@@ -1,6 +1,5 @@
 package kinsey.jim.euler;
 
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
