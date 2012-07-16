@@ -28,9 +28,9 @@ public class Problem12 {
 	}
 	
 	public static long firstTriangleWithMoreThanNFactors(int n) {
-		for (long i = 1;; i++) {
-			if (factors(triangle(i)).size() > n) {
-				return triangle(i);
+		for (long i = 1, t = triangle(i);; i++) {
+			if (factors(t).size() > n) {
+				return t;
 			}
 		}
 	}
@@ -53,5 +53,5 @@ public class Problem12 {
 		
 		return factors;
 	}
-	
+		
 }
