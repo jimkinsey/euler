@@ -28,6 +28,11 @@ public class Problem15Test {
 		assertEquals(3, Problem15.paths(point(0,0), point(1,2)));
 	}
 	
+	@Test
+	public void test_paths_2_x_3() {
+		assertEquals(10, Problem15.paths(point(0,0), point(2,3)));
+	}
+	
 	private static Point point(int x, int y) {
 		return Point.make(x, y);
 	}

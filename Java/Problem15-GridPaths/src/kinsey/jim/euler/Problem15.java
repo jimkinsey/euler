@@ -10,9 +10,33 @@ public class Problem15 {
 	}
 	
 	public static long paths(Point start, Point finish) {
+		if (isCached(start, finish))
+			return getCachedPaths(start, finish);
 		if (start.x == finish.x || start.y == finish.y)
-			return 1;
-		return paths(start.nextX(), finish) + paths(start.nextY(), finish);
+			return cachePaths(start, finish, 1);
+		return cachePaths(start, finish, paths(start.nextX(), finish) + paths(start.nextY(), finish));
+	}
+
+	private static Map<Integer, Long> pathCache = new HashMap<Integer, Long>();
+
+	private static boolean isCached(Point start, Point finish) {
+		return pathCache.containsKey(hash(start, finish));
+	}
+	
+	private static long getCachedPaths(Point start, Point finish) {
+		return pathCache.get(hash(start, finish));
+	}
+	
+	private static long cachePaths(Point start, Point finish, long paths) {
+		pathCache.put(hash(start, finish), paths);
+		return paths;
+	}
+	
+	private static int hash(Point start, Point finish) {
+		int hash = 1;
+		hash = hash * 17 + start.hashCode();
+		hash = hash * 17 + finish.hashCode();
+		return hash;
 	}
 	
 	public static class Point {
@@ -42,6 +66,11 @@ public class Problem15 {
 		@Override
 		public int hashCode() {
 			return hash(x, y);
+		}
+		
+		@Override
+		public String toString() {
+			return "[" + x + ", " + y +"]";
 		}
 		
 		private static Map<Integer, Point> cache = new HashMap<Integer, Problem15.Point>();
