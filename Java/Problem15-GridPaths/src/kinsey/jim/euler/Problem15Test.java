@@ -2,7 +2,6 @@ package kinsey.jim.euler;
 
 import static org.junit.Assert.assertEquals;
 import kinsey.jim.euler.Problem15;
-import kinsey.jim.euler.Problem15.Point;
 
 import org.junit.Test;
 
