@@ -34,14 +34,11 @@ public class Problem13 {
 		return String.valueOf(sum / 10);
 	}
 	
+	@SuppressWarnings("unchecked")
 	private static List<String> chomp(List<String> strings) {
-		List<String> choppedStrings = new ArrayList<String>();
-		
-		for (String string : strings) {
-			choppedStrings.add(chomp(string));
-		}
-		
-		return choppedStrings;
+		if (strings.size() == 0)
+			return new ArrayList<String>();
+		return flatten(chomp(head(strings)), chomp(tail(strings)));
 	}
 
 	private static String chomp(String string) {
@@ -57,8 +54,8 @@ public class Problem13 {
 	}
 	
 	private static int maxLength(List<String> strings) {
-		if (strings.size() == 1)
-			return strings.get(0).length();
+		if (strings.size() == 0)
+			return 0;
 		return Math.max(head(strings).length(), maxLength(tail(strings)));
 	}
 	
