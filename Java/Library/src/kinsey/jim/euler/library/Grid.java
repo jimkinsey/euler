@@ -1,12 +1,12 @@
-package kinsey.jim.euler;
+package kinsey.jim.euler.library;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Grid<T> {
 
-	final int width;
-	final int height;
+	public final int width;
+	public final int height;
 		
 	public Grid(int width, int height) {
 		this.width = width;

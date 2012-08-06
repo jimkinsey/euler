@@ -8,7 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import kinsey.jim.euler.Grid.Direction;
+import kinsey.jim.euler.library.Grid;
+import kinsey.jim.euler.library.Grid.Direction;
 
 public class Problem11 {
 

@@ -1,11 +1,11 @@
-package kinsey.jim.euler;
+package kinsey.jim.euler.library;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
-import kinsey.jim.euler.Grid.Direction;
+import kinsey.jim.euler.library.Grid.Direction;
 
 import org.junit.Test;
 

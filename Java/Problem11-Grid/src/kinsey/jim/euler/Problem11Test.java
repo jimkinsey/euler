@@ -1,6 +1,7 @@
 package kinsey.jim.euler;
 
 import static org.junit.Assert.assertEquals;
+import kinsey.jim.euler.library.Grid;
 
 import org.junit.Test;
 
