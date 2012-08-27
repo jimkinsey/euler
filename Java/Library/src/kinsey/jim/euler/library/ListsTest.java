@@ -112,4 +112,63 @@ public class ListsTest {
 		assertEquals(asList(1,2,3,4,5), Lists.flatten(listsAndObjects));
 	}
 	
+	@Test
+	public void test_group_empty_list() {
+		assertEquals(Collections.emptyList(), Lists.group(Collections.emptyList(), 5));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_group_list_with_fewer_elements_than_size() {
+		List<String> smallList = asList("one", "two");
+		assertEquals(asList(smallList), Lists.group(smallList, 3));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_group_list_with_same_elements_as_size() {
+		assertEquals(asList(asList(3,2,1)), Lists.group(asList(3,2,1), 3));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_group_list_with_more_elements_than_size() {
+		assertEquals(asList(asList(1,2), asList(3,4)), Lists.group(asList(1,2,3,4), 2));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_group_list_with_three_groups() {
+		assertEquals(asList(asList(1,2,3), asList(4,5,6), asList(7)), Lists.group(asList(1,2,3,4,5,6,7), 3));
+	}
+	
+	@Test
+	public void test_groupFromEnd_empty_list() {
+		assertEquals(Collections.emptyList(), Lists.groupFromEnd(Collections.emptyList(), 4));
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_groupFromEnd_with_fewer_elements_than_size() {
+		assertEquals(asList(asList(7,8,9)), Lists.groupFromEnd(asList(7,8,9),4));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_groupFromEnd_with_same_elements_as_size() {
+		assertEquals(asList(asList(7,8,9)), Lists.groupFromEnd(asList(7,8,9),3));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_groupFromEnd_with_more_elements_than_size_and_even_groups() {
+		assertEquals(asList(asList(1,2), asList(3,4)), Lists.groupFromEnd(asList(1,2,3,4), 2));
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void test_groupFromEnd_with_uneven_groups() {
+		assertEquals(asList(asList(1), asList(9, 7, 8)), Lists.groupFromEnd(asList(1,9,7,8), 3));
+	}
+	
 }

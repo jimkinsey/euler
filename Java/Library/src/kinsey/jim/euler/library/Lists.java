@@ -2,6 +2,7 @@ package kinsey.jim.euler.library;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Lists {
@@ -59,6 +60,40 @@ public class Lists {
 		if (element instanceof List)
 			return flatten(((List) element));
 		return Arrays.asList(element);
+	}
+	
+	public static <E> List<List<E>> group(List<E> list, int size) {
+		List<List<E>> grouped = new ArrayList<List<E>>();
+		for (int i = 0; i < list.size(); i += size) {
+			int j = Math.min(i + size, list.size());
+			grouped.add(list.subList(i, j));
+		}
+		return grouped;
+	}
+	
+	public static <E> List<List<E>> groupFromEnd(List<E> list, int size) {
+		List<List<E>> groupedReversedList = group(reversed(copyOf(list)), size);
+		return reverseGroupedList(groupedReversedList);
+	}
+
+	private static <E> List<List<E>> reverseGroupedList(List<List<E>> grouped) {
+		for (List<E> group : grouped)
+			Collections.reverse(group);
+		return reversed(grouped);
+	}
+	
+	public static <E> List<E> copyOf(List<E> src) {
+		List<E> dest = new ArrayList<E>(src.size());
+		for (E element : src)
+			dest.add(element);
+		return dest;
+	}
+	
+	public static <E> List<E> reversed(List<E> src) {
+		List<E> reversed = new ArrayList<E>(src.size());
+		for (int i = src.size() - 1; i >= 0; i--)
+			reversed.add(src.get(i));
+		return reversed;
 	}
 	
 }
