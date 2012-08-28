@@ -1,10 +1,7 @@
 package kinsey.jim.euler;
 
-import static kinsey.jim.euler.library.Lists.flatten;
-import static kinsey.jim.euler.library.Lists.head;
-import static kinsey.jim.euler.library.Lists.tail;
+import static kinsey.jim.euler.library.Numbers.sum;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,52 +10,7 @@ public class Problem13 {
 	public static void main(String[] args) {
 		System.out.println(sum(problemNumbers).substring(0, 10));
 	}
-	
-	@SuppressWarnings("unchecked")
-	public static String sum(List<String> numbers) {
-		if (maxLength(numbers) == 0)
-			return "";
-		
-		int lastDigitSum = 0;
-		
-		for (String string : numbers) {
-			lastDigitSum += lastDigit(string);
-		}
-		
-		return sum(flatten(carry(lastDigitSum), chomp(numbers))) + (lastDigitSum % 10);
-	}
-	
-	private static String carry(int sum) {
-		if (sum < 10)
-			return "";
-		return String.valueOf(sum / 10);
-	}
-	
-	@SuppressWarnings("unchecked")
-	private static List<String> chomp(List<String> strings) {
-		if (strings.size() == 0)
-			return new ArrayList<String>();
-		return flatten(chomp(head(strings)), chomp(tail(strings)));
-	}
 
-	private static String chomp(String string) {
-		if (string.length() == 0)
-			return "";
-		return string.substring(0, string.length() - 1);
-	}
-	
-	private static int lastDigit(String number) {
-		if (number.length() == 0)
-			return 0;
-		return Integer.valueOf(number.substring(number.length() - 1));
-	}
-	
-	private static int maxLength(List<String> strings) {
-		if (strings.size() == 0)
-			return 0;
-		return Math.max(head(strings).length(), maxLength(tail(strings)));
-	}
-	
 	private static final List<String> problemNumbers = Arrays.asList(
 			"37107287533902102798797998220837590246510135740250",
 			"46376937677490009712648124896970078050417018260538",
