@@ -8,27 +8,30 @@ public class Triangle {
 	
 	public Triangle(String triangleDefinition) {
 		if (triangleDefinition.isEmpty())
-			throw new IllegalArgumentException();
-		rows = parseDefinition(triangleDefinition);
+			throw new IllegalArgumentException("Triangle string is empty");
+		parseDefinition(triangleDefinition);
 	}
 	
 	private Triangle(List<List<Integer>> rows) {
 		this.rows = rows;
 	}
 
-	private List<List<Integer>> parseDefinition(String triangleDefinition) {
-		List<List<Integer>> rows = new ArrayList<List<Integer>>();
-		String[] rowDefinitions = triangleDefinition.split("\n");
-		for (String rowDefinition : rowDefinitions)
-			rows.add(parseRow(rowDefinition));
-		return rows;
+	private void parseDefinition(String triangleDefinition) {
+		rows = new ArrayList<List<Integer>>();
+		for (String row : triangleDefinition.split("\n"))
+			addRow(parseRow(row));
+	}
+	
+	private void addRow(List<Integer> cells) {
+		if (cells.size() != (rows.size() + 1))
+			throw new IllegalArgumentException("Row " + rows.size() + " has wrong number of cells, expected " + (rows.size() + 1) + " got " + cells.size());
+		rows.add(cells);
 	}
 
-	private List<Integer> parseRow(String rowDefinition) {
+	private List<Integer> parseRow(String cells) {
 		List<Integer> row = new ArrayList<Integer>();
-		String[] cellDefinitions = rowDefinition.split(" ");
-		for (String cellDefinition : cellDefinitions)
-			row.add(Integer.valueOf(cellDefinition));
+		for (String cell : cells.split(" "))
+			row.add(Integer.valueOf(cell));
 		return row;
 	}
 		
@@ -45,11 +48,9 @@ public class Triangle {
 	}
 	
 	public Triangle subTriangle(int row, int column) {
-		if (row == 0)
-			return this;
 		List<List<Integer>> subTriangleRows = new ArrayList<List<Integer>>();
 		for (int i = row; i < rows.size(); i++)
-			subTriangleRows.add(rows.get(i).subList(column, (i - row) + 1 + column));
+			subTriangleRows.add(rows.get(i).subList(column, column + (i - row) + 1));
 		return new Triangle(subTriangleRows);
 	}
 	

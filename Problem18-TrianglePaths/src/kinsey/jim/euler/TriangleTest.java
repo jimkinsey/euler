@@ -29,6 +29,16 @@ public class TriangleTest {
 		assertEquals(3, triangle.get(1,1));
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void row_with_too_few_cells() {
+		new Triangle("01\n02");
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void row_with_too_many_cells() {
+		new Triangle("01\n02 03 04");
+	}
+	
 	@Test
 	public void max_path_value_of_triangle_with_one_row() {
 		Triangle triangle = new Triangle("01");
